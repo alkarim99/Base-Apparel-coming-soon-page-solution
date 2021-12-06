@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <title>Frontend Mentor | Base Apparel coming soon page</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 16px;
+      background-image: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+      background-size: cover;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+    }
+    .container{
+      display: flex;
+    }
+    .container .main{
+      background-image: url(images/bg-pattern-desktop.svg);
+      background-size: cover;
+      padding: 60px 190px 60px 100px;
+      width: 450px;
+    }
+    .container .main .logo{
+      margin-bottom: 80px;
+    }
+    .container .main .header{
+      font-size: 65px;
+      letter-spacing: 20px;
+      line-height: 65px;
+      margin-bottom: 5px;
+    }
+    .container .main .header span{
+      font-weight: 300;
+      color: hsl(0, 36%, 70%);
+    }
+    .container .main .desc{
+      color: hsl(0, 36%, 70%);
+      line-height: 25px;
+    }
+    .container .main form{
+      position: relative;
+    }
+    .container .main form input{
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 16px;
+      padding: 0 0 0 20px;
+      height: 45px;
+      width: 400px;
+      border: 1px solid hsl(0, 36%, 70%);
+      border-radius: 50px;
+      background-color: transparent;
+    }
+    .container .main form button{
+      position: absolute;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 16px;
+      margin-left: -90px;
+      height: 47px;
+      width: 90px;
+      border: none;
+      border-radius: 50px;
+      background-image: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+    }
+    .container .main form .error{
+      position: absolute;
+      margin: 11px 0 0 -110px;
+      display: none;
+      z-index: 2;
+    }
+    .container .main form .alert{
+      position: absolute;
+      margin: 8px 0 0 20px;
+      text-align: left;
+      font-style: italic;
+      font-size: 12px;
+      color: hsl(0, 36%, 70%);
+      display: none;
+    }
+    .container .hero{
+      background-image: url(images/hero-desktop.jpg);
+      background-size: cover;
+      width: 610px;
+      height: 800px;
+      /*height: 100%;*/
+    }
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    @media screen and (max-width: 375px) {
+      body{
+        /*padding: 10px 0;*/
+      }
+      .container{
+        flex-direction: column;
+      }
+      .container .main{
+        padding: 60px 0;
+        background-image: none;
+        width: 100%;
+      }
+      .container .main .logo{
+        padding: 0 40px;
+        margin-bottom: 50px;
+      }
+      .container .main .hero-mobile{
+        margin: 0;
+        background-image: url(images/hero-mobile.jpg);
+        background-size: cover;
+        width: 375px;
+        height: 250px;
+      }
+      .container .main .header{
+        font-size: 35px;
+        letter-spacing: 10px;
+        line-height: 40px;
+        margin-bottom: 5px;
+        text-align: center;
+      }
+      .container .main .desc{
+        text-align: center;
+        font-size: 14px;
+        width: 80%;
+        margin: 14px auto;
+      }
+      .container .main form{
+        text-align: center;
+      }
+      .container .main form input{
+        margin: 0 auto;
+        width: 270px;
+      }
+      .container .hero{
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main">
+      <img class="logo" src="images/logo.svg" alt="logo">
+      <div class="hero-mobile"></div>
+      <p class="header"><span>WE'RE</span> COMING SOON</p>
+      <p class="desc">Hello fellow shoppers! We're currently building our new fashion store. Add your email below to stay up-to-date with announcements and our launch deals.</p>
+      <form action="#" id="my-form">
+        <input type="text" id="email" placeholder="Email Address">
+        <button type="submit" value="submit"><img src="images/icon-arrow.svg" alt="arrow"></button>
+        <img class="error" src="images/icon-error.svg" alt="error">
+        <p class="alert">Whoops! It looks like you forgot to add your email</p>
+      </form>
+    </div>
+    <div class="hero"></div>
+    <!-- <img class="hero-img" src="images/hero-desktop.jpg" alt="hero-img"> -->
+  </div>
+  
+  <footer>
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Abdullah Al-Karim</a>.
+    </p>
+  </footer>
+  <script type="text/javascript">
+    const myform = document.querySelector('#my-form');
+    const email = document.querySelector('#email');
+    const alert = document.querySelector('.alert');
+    const error = document.querySelector('.error');
+    myform.addEventListener('submit', onSubmit);
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    function onSubmit() {
+      if (email.value=='') {
+        alert.style.display='block';
+        alert.innerHTML='Whoops! It looks like you forgot to add your email';
+        error.style.display='inline-block';
+      }
+      else if (email.value.match(mailformat)) {
+        alert.style.display='none';
+      }
+      else{
+        alert.style.display='block';
+        alert.innerHTML='Please provide a valid email address';
+        error.style.display='inline-block';
+      }
+    }
+  </script>
+</body>
+</html>
